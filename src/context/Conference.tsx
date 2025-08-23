@@ -1,5 +1,5 @@
 "use client";
-import React, {createContext, useState, useContext} from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 // Define Data Types
 export interface Speaker {
@@ -10,8 +10,6 @@ export interface Speaker {
   bio: string;
   avatarUrl?: string;
 }
-
-
 
 export interface Conference {
   id: string;
@@ -26,27 +24,34 @@ export interface Conference {
   maxAttendees: number;
   currentAttendees: number;
   isFeatured: boolean;
-
 }
+
 interface ConferenceContextType {
-    conferences: Conference[];
-    setConferences: React.Dispatch<React.SetStateAction<Conference[]>>;
+  conferences: Conference[];
+  setConferences: React.Dispatch<React.SetStateAction<Conference[]>>;
+  selectedConference: Conference | null;
+  setSelectedConference: (conf: Conference) => void;
 }
 
 // Create Context
 const ConferenceContext = createContext<ConferenceContextType | undefined>(undefined);
 
 // Create Provider
-export const ConferenceProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+export const ConferenceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [conferences, setConferences] = useState<Conference[]>([]);
+  const [selectedConference, setSelectedConference] = useState<Conference | null>(null);
 
-    const [conferences, setConferences] = useState<Conference[]>([]);
-
-    return (
-        <ConferenceContext.Provider value={{ conferences, setConferences }}>
-            {children}
-        </ConferenceContext.Provider>
+  return (
+    <ConferenceContext.Provider value={{ 
+      conferences, 
+      setConferences, 
+      selectedConference, 
+      setSelectedConference 
+    }}>
+      {children}
+    </ConferenceContext.Provider>
   );
-}
+};
 
 // Custom Hook
 export const useConferences = () => {
