@@ -31,7 +31,7 @@ export default function HomePage() {
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 pt-4"> 
           {conferences.map((conf, index) => (
              <Link href={`/events/${conf.id}`} onClick={() => setSelectedConference(conf)}>
-            <div key={conf.id} className="conference_tag">
+            <div key={index} className="conference_tag">
                 <div className="conference_tag_image">
                   <img 
                   src={conf.imageUrl} 

@@ -66,7 +66,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* min-width: 1000px; */
+  
 
 }
 .main_event_details {
@@ -402,4 +402,11 @@ overflow: hidden;
   /* height: ; */
   background-color: rgb(242, 242, 242);
 
+}
+.bottom_half{
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: row;
 }
