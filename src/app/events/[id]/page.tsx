@@ -6,6 +6,7 @@ import EventSummary from "../../components/EventSummary";
 import RegistrationForm from "../../components/RegistrationForm";
 import EventDetials from "@/app/components/EventDetails";
 import SpeakerBio from "@/app/components/SpeakerBio";
+import Header from "@/app/components/Header"
 
 import Link from "next/link";
 import Head from "next/head";
@@ -41,21 +42,21 @@ const EventPage: React.FC = () => {
 
           <div className="main_event_details">
 
-              {/* Event Image */}
-              <div className="event_details_img_con">
-                <img src={selectedConference.imageUrl} alt={selectedConference.name} className="event_detail_img" />
+            <Header/>
+
+            <div className="event_details_img_con">
+              <img src={selectedConference.imageUrl} alt={selectedConference.name} className="event_detail_img" />
+            </div>
+          
+            <EventSummary/>
+          
+            <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-4 lg:space-y-0 p-4 bg-gray-100">
+              <div className="event_description_and_speaker bg-white">
+                <SpeakerBio/>
+                <EventDetials/>
               </div>
-            
-              <EventSummary/>
-             
-              {/* Event Details and Registration Form */}
-              <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-4 lg:space-y-0 p-4 bg-gray-100">
-                <div className="event_description_and_speaker bg-white">
-                  <SpeakerBio/>
-                  <EventDetials/>
-                </div>
-                <RegistrationForm/>
-              </div>
+              <RegistrationForm/>
+            </div>
 
           </div>
 
