@@ -77,4 +77,4 @@ function createMockConference(id: number): Conference {
   };
 }
 // Generate X Amount Conferences
-export const mockConferences: Conference[] = Array.from({ length: 500 }, (_, i) => createMockConference(i + 1));
+export const mockConferences: Conference[] = Array.from({ length: 5 }, (_, i) => createMockConference(i + 1));

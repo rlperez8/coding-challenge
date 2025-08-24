@@ -73,7 +73,7 @@ body {
   
   /* background-color: rgb(248, 248, 248); */
 
-  overflow-y: auto; /* scroll only inside this area */
+  overflow-y: scroll; /* scroll only inside this area */
   box-sizing: border-box;
   border-radius: 15px;
   display: flex;
