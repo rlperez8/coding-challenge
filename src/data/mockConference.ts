@@ -29,6 +29,24 @@ function randomTechName() {
 
   return `${adj} ${topic} ${noun}`;
 }
+function randomDescription(): string {
+  const descriptions = [
+    `Join industry leaders, developers, and innovators at this year’s event where we’ll explore the latest trends in cloud computing, AI, and emerging technologies. 
+    Attendees will gain practical insights from real-world case studies and network with peers across multiple industries.`,
+
+    `This conference brings together experts from around the world to discuss cutting-edge solutions in software development, cybersecurity, and digital transformation. 
+    Expect interactive sessions, hands-on workshops, and opportunities to collaborate with some of the brightest minds in tech.`,
+
+    `Dive into a dynamic environment filled with thought-provoking talks, panel discussions, and technical deep dives. 
+    Whether you’re an experienced professional or just starting out, you’ll walk away with actionable knowledge and valuable connections.`,
+
+    `Discover the future of technology through keynote presentations, networking events, and interactive demos. 
+    The conference offers a unique chance to connect with innovators shaping the next wave of advancements in artificial intelligence and beyond.`
+  ];
+
+  // Pick a random description
+  return descriptions[Math.floor(Math.random() * descriptions.length)];
+}
 // Random Name Generator
 const techConferenceNames = Array.from({ length: 100 }, () => randomTechName());
 
@@ -46,7 +64,7 @@ function createMockConference(id: number): Conference {
   return {
     id: `conf-${id}`,
     name: `Conference ${id}`,
-    description: `This is the description for Conference ${id}.`,
+    description: randomDescription(),
     date: randomDate(),
     location: randomLocation(),
     price: randomNumber(50, 500),
