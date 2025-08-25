@@ -19,10 +19,10 @@ export interface Conference {
   location: string;
   price: number;
   category: string;
-  imageUrl?: string;
+  imageurl?: string;
   speakers: Speaker[];
-  maxAttendees: number;
-  currentAttendees: number;
+  max_attendees: number;
+  current_attendees: number;
   isFeatured: boolean;
 }
 

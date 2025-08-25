@@ -12,9 +12,9 @@ import Header from "@/app/components/Header"
 import Link from "next/link";
 import Head from "next/head";
 import { useConferences } from "@/context/Conference";
-
-
-
+import Create_Edit from './components/create_edit';
+import Conferences from './components/conferences';
+import Create_Button from './components/create_button';
 const AdminPage: React.FC = () => {
 
   const {conferences, setConferences} = useConferences()
@@ -23,7 +23,7 @@ const AdminPage: React.FC = () => {
     try {
       console.log('Deleting conference with ID:', conf_id);
 
-      const res = await fetch("/api", {  // make sure route matches your API
+      const res = await fetch("/api", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: conf_id }),
@@ -33,8 +33,7 @@ const AdminPage: React.FC = () => {
       console.log('Response data:', data);
 
       if (res.ok) {
-        // alert("Conference deleted!");
-        // Remove deleted conference from state
+ 
         setConferences(prev => prev.filter(c => c.id !== conf_id));
       } else {
         alert(`Error: ${data.error}`);
@@ -47,84 +46,25 @@ const AdminPage: React.FC = () => {
 
 
   return (
-  <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-
       <div className="main">
-        
         <div className="main_inner">
 
           <NavBar />
 
-          <div className="main_event_details">
+          <div className="main2">
 
             <Header/>
+            <div className="main3">
 
-            <div className="admin_container">
+              <Create_Edit/>
+              <Conferences/>
+              <Create_Button/>
               
-           
-
-              <div className='admin_container_inner'>
-                  <h1 className="text-2xl font-bold mb-4">Delete Conference</h1>
-
-                  <div className="admin_events"> 
-                    {conferences.map((conf, index) => (
-                      <div className='admin_single_event_container'>
-                        
-                        <div className='tag'>
-                          <Link key={index}  href={`/events/${conf.id}`}>
-                          <div className="admin_conference_tag">
-                              <div className="conference_tag_image">
-                                <img 
-                                src={conf.imageUrl} 
-                                alt={conf.name} 
-                                className="conference_image" 
-                              />
-                              </div>
-                              <div className="conference_tag_status">
-                                <div className={new Date(conf.date) < new Date() || conf.currentAttendees === conf.maxAttendees ? 'status_closed' : 'status_open'}>
-                                  {
-                                    new Date(conf.date) < new Date() ? 'Closed' : conf.currentAttendees === conf.maxAttendees ? 'Sold Out' : 'Open'
-                                  }
-                                </div>
-                              </div>
-                              <div className="conference_tag_name">{conf.category}</div>
-                              <div className="conference_tag_date">
-                                {new Date(conf.date).toLocaleDateString("en-US", {
-                                  month: "long",
-                                  day: "numeric",
-                                  year: "numeric",
-                                })} &middot; {conf.maxAttendees - conf.currentAttendees} of {conf.maxAttendees} remaining.
-                              </div>
-                              <div className="conference_tag_location">{conf.location}</div>
-                          </div>
-                        </Link>
-                        </div>
-                        
-                        
-
-                        <div className='edit_options'>
-                          <div onClick={()=>{handle_delete_event(conf.id)}} className='delete_button_con'>Delete</div>
-                          <div className='delete_button_con'>Edit</div>
-                        </div>
-
-                      
-                      </div>
-                    ))}
-                  </div>
-              </div>
-
             </div>
-
-
           </div>
-
         </div>
-
       </div>
-    </>
+   
   );
 }
 

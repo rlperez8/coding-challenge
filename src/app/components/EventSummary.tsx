@@ -76,7 +76,7 @@ const EventSummary: React.FC = () => {
           <img src="/images/icons/people.png" alt="My Icon" />
         </div>
         <div className={event_name_css}>
-          {selectedConference.currentAttendees} of {selectedConference.maxAttendees}
+          {selectedConference.current_attendees} of {selectedConference.max_attendees}
         </div>
       </div>
     </div>

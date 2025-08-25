@@ -45,7 +45,7 @@ const EventPage: React.FC = () => {
             <Header/>
 
             <div className="event_details_img_con">
-              <img src={selectedConference.imageUrl} alt={selectedConference.name} className="event_detail_img" />
+              <img src={selectedConference.imageurl} alt={selectedConference.name} className="event_detail_img" />
             </div>
           
             <EventSummary/>
