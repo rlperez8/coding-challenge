@@ -510,9 +510,9 @@ overflow: hidden;
   /* margin: 5px; */
   transition: transform 0.1s ease, background-color 0.1s ease;
   cursor: pointer;   
-    user-select: none; /* Prevent text from being selected */
-  -webkit-user-select: none; /* Safari/Chrome */
-  -moz-user-select: none; /* Firefox */
+  user-select: none; 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
   -ms-user-select: none;   
   
 }

@@ -10,8 +10,10 @@ export default function HomePage() {
 
  const { conferences, setConferences, setSelectedConference } = useConferences();
 
+  // Event Generator  
   // useEffect(() => {setConferences(mockConferences);}, [setConferences]);
 
+  // Fetch Conferences On Load
    useEffect(() => {
     async function fetchConferences() {
       try {

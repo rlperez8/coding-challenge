@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   try {
     const body = await req.json();
-    const { id } = body; // <-- destructure id properly
+    const { id } = body; 
     console.log('Incoming ID:', id);
 
     const result = await sql`
@@ -40,7 +40,6 @@ export async function DELETE(req: Request) {
       WHERE id = ${id}
       RETURNING *;
     `;
-
     return new Response(
       JSON.stringify({ message: "Deleted successfully", data: result.rows[0] }),
       { status: 200, headers: { "Content-Type": "application/json" } }
@@ -53,7 +52,6 @@ export async function DELETE(req: Request) {
     );
   }
 }
-
 export async function GET() {
   try {
     const result = await sql`SELECT * FROM coding_challenge.conferences`;
