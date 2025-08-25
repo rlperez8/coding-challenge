@@ -1,5 +1,5 @@
 import type { Conference, Speaker } from "@/context/Conference";
-
+import { v4 as uuidv4 } from "uuid";
 const locations = ["New York", "San Francisco", "Berlin", "Tokyo", "London"];
 const adjectives = ["Global", "NextGen", "Advanced", "Modern", "Future", "Innovative", "Digital", "Virtual"];
 const topics = ["AI", "Blockchain", "Cloud", "Cybersecurity", "DevOps", "IoT", "Data", "Robotics", "Software", "Tech"];
@@ -47,9 +47,6 @@ function randomDescription(): string {
   // Pick a random description
   return descriptions[Math.floor(Math.random() * descriptions.length)];
 }
-// Random Name Generator
-const techConferenceNames = Array.from({ length: 100 }, () => randomTechName());
-
 function createMockConference(id: number): Conference {
   const speaker: Speaker = {
     id: `s${id}`,
@@ -62,13 +59,13 @@ function createMockConference(id: number): Conference {
   const maxAttendees = randomNumber(1, 10);
 
   return {
-    id: `conf-${id}`,
+    id: uuidv4(),
     name: `Conference ${id}`,
     description: randomDescription(),
     date: randomDate(),
     location: randomLocation(),
     price: randomNumber(50, 500),
-    category: [techConferenceNames[Math.floor(Math.random() * techConferenceNames.length)]],
+    category: randomTechName(),
     speakers: [speaker],
     maxAttendees,
     currentAttendees: randomNumber(1, maxAttendees),

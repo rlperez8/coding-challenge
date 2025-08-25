@@ -18,7 +18,7 @@ export interface Conference {
   date: string;
   location: string;
   price: number;
-  category: string[];
+  category: string;
   imageUrl?: string;
   speakers: Speaker[];
   maxAttendees: number;

@@ -7,9 +7,9 @@ import RegistrationForm from "../../components/RegistrationForm";
 import EventDetials from "@/app/components/EventDetails";
 import SpeakerBio from "@/app/components/SpeakerBio";
 import Header from "@/app/components/Header"
-
 import Link from "next/link";
 import Head from "next/head";
+
 const EventPage: React.FC = () => {
   const { selectedConference } = useConferences();
 

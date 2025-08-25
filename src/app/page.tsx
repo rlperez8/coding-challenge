@@ -10,9 +10,22 @@ export default function HomePage() {
 
  const { conferences, setConferences, setSelectedConference } = useConferences();
 
-  useEffect(() => {
-    setConferences(mockConferences);
-  }, [setConferences]);
+  // useEffect(() => {setConferences(mockConferences);}, [setConferences]);
+
+   useEffect(() => {
+    async function fetchConferences() {
+      try {
+        const res = await fetch("/api"); 
+        const data = await res.json();
+        console.log(data)
+        setConferences(data.conferences); 
+      } catch (err) {
+        console.error("Failed to fetch conferences:", err);
+      }
+    }
+
+    fetchConferences();
+  }, []);
 
   return (
     <div className="main">
