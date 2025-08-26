@@ -41,35 +41,32 @@ html, body {
   user-select: none;              /* standard */
   -webkit-tap-highlight-color: transparent; /* remove tap highlight */
 }
-.main {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
 
-
+.pagelayout_outer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(243, 242, 242);
 }
-.main_inner{
-  max-width: 1500px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  box-shadow:    -10px 0 10px 0 rgba(0,0,0,0.1), ;
-  box-shadow: 0 0 10px 5px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-
-}
-.navbar {
-  width: 80px;  /* fixed sidebar */
-  min-width: 80px;
-  max-width: 80px;
-  /* height: 100vh; */
-  display: flex;
-  flex-direction: column;
-
+.pagelayout_inner{
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
  
+    background-color: white;
 }
+.navigation_bar{
+    height: 100%;
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+    
+}
+/* Nav Bar */
 .icon_con {
   width: 100%;
   height: 75px;
@@ -99,16 +96,290 @@ html, body {
   width: 50%;  
   height: auto; 
 }
-.main2 {
-  padding: 15px;
+
+/* Displayed Page */
+.displayed_page {
   box-sizing: border-box;
-  border-radius: 15px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;;
+}
 
+/* Header */
+.header{
+  height: 50px;
+  max-height: 50px;
+  min-height: 50px;
+  width: 100%;
+}
+
+/* All Conferences */
+.all_conferences {
+  overflow-y: scroll;
+  flex: 1;
+}
+.all_conferences::-webkit-scrollbar {
+  display: none;
+}
+.conference_tag{
+  width: 100%;        
+  max-width: 100%;     
+  height: 220px;       
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* border: 5px solid red; */
+  border-radius: 10px;
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25)
+
+
+}
+.ccc{
+    width: 100%;
+    max-height: 300px;
+    padding: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.conference_tag_image{
+  width: 100%;
+  /* height: 50px; */
+overflow: hidden;
+  /* min-width: 500px; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* border: 2px solid red; */
+  box-sizing: border-box;
+
+}
+.conference_tag_name{
+  width: 100%;
+  margin-left: 15px;
+  font-size: 130%;
+  font-weight: 600;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #4e4e4e;
+  padding-top: 10px;
+}
+.conference_tag_date{
+  width: 100%;
+  /* height: 12%; */
+  margin-left: 15px;
+  font-size: 90%;
+    color: #4a4949;
+}
+.conference_tag_location{
+  width: 100%;
+  /* height: 12%; */
+  margin-left: 15px;
+  font-size: 90%;
+    color: #4a4949;
+    font-weight:600;
+}
+
+/* Conference Details */
+.conference_details{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+}
+.conference_register{
+  width: 100%;
+  height: 150px;
+  border: 2px solid black;
+  background-color: rgb(216, 214, 214);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Admin Layout */
+.admin_layout{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: ;
+
+}
+.admin_page_content{
+  /* width: 100%; */
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  overflow: scroll;
+}
+.edit_conferences_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin_inner_layout{
+  flex-direction: column;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
 }
+.conference_speaker_options {
+  width: 100%;
+  height: 5%;
+  max-height: 10%;
+  max-height: 50px;
+  max-width: 500px;
+  /* height: 55px; */
+  display: flex;
+  align-items: center;       
+  background-color: #fff;
+}
+.admin_mid_layout{
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  display: flex;
+  /* align-items: center;        */
+  background-color: #fff;
+  overflow-y: auto;
+}
+.xx{
+  width: 100%;
+  height: 50%;
+
+}
+.create_button_con{
+  width: 100%;
+  height: 5%;
+  max-height: 10%;
+  max-height: 50px;
+
+  /* height: 55px; */
+  display: flex;
+  align-items: center;       
+  background-color: #fff;
+}
+.admin_single_event_container{
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(210, 208, 208);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.tag{
+  width: 100%;
+  height: 90%;
+  /* min-height: 100%; */
+ 
+  box-sizing: border-box;
+
+}
+
+/* Edit Speaker Layout */
+.edit_speaker_layout{
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  min-height: 100%;
+
+}
+
+.conference_speaker_bio_con{
+  width: 100%;
+  /* height: 100%; */
+
+}
+.conference_speaker_image_con{
+  width: 100%;
+  /* flex: 1; */
+
+}
+
+/* Create Conference Form */
+.select_speaker{
+  width: 100%;
+  height: 500px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.speaker_row{
+  width: 100%;
+  height: 50px;
+  border: 2px solid rgb(226, 226, 230);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.speaker_row_selected{
+  width: 100%;
+  height: 50px;
+  border: 2px solid rgb(226, 226, 230);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgb(172, 169, 169);
+}
+/* input[type="date"] {
+  width: 100% !important;
+  min-width: 0;
+  -webkit-appearance: none; 
+  -moz-appearance: none;  
+  appearance: none;
+} */
+
+
+/* ============================== */
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+
+}
+.main_inner{
+  max-width: 1500px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-shadow:    -10px 0 10px 0 rgba(0,0,0,0.1), ;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+
+
+}
+.navbar {
+  width: 80px;  /* fixed sidebar */
+  min-width: 80px;
+  max-width: 80px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+
+ 
+}
+
+
 .main3{
   
   box-sizing: border-box;
@@ -122,31 +393,21 @@ html, body {
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
+
   
 }
 .main_event_details {
-  
-  /* background-color: rgb(248, 248, 248); */
-
-
   box-sizing: border-box;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* min-width: 1000px; */
-
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
 }
 
-.event_list_header{
-  width: 100%;
-  /* height: 75px; */
-  font-weight: 550;
-  color: #777676;
-  border-bottom: 1px solid rgb(141, 141, 141);
 
-
-}
 .block1{
   width: 100%;
   height: 100%;
@@ -201,14 +462,7 @@ html, body {
   color: rgb(220, 216, 216);
   border-radius: 5px;
 }
-.event_list{
-  width: 100%;
-  height: 50%;
-  color: #595858;
-   display: flex;
-  justify-content: left;
-  align-items: bottom;
-}
+
 .items_listed{
   width: 100%;
   height: 50%;
@@ -230,38 +484,9 @@ html, body {
   align-items: center;
 
 }
-.conference_tag{
-  width: 100%;        
-  max-width: 100%;     
-  height: 220px;       
-  /* box-shadow: 10px 10px 10px 5px rgba(0,0,0,0.1); */
-  /* border-radius: 10px; */
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.conference_tag_image{
-  width: 100%;
-  /* height: 50px; */
-overflow: hidden;
-  /* min-width: 500px; */
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  /* border: 2px solid red; */
-  box-sizing: border-box;
 
-}
-.conference_tag_status{
-  width: 100%;
-  height: 10%;
-  min-height: 10%;
-  max-height: 10%;
 
-}
+
 .status_open{
   width: 30%;
   background-color: teal;
@@ -280,31 +505,8 @@ overflow: hidden;
   align-items: center;
   color: white;
 }
-.conference_tag_name{
-  width: 100%;
-  /* height: 25%; */
-  margin-left: 15px;
-  font-size: 130%;
-  font-weight: 600;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: #4e4e4e;
-  padding-top: 10px;
-}
-.conference_tag_date{
-  width: 100%;
-  /* height: 12%; */
-  margin-left: 15px;
-  font-size: 90%;
-    color: #4a4949;
-}
-.conference_tag_location{
-  width: 100%;
-  /* height: 12%; */
-  margin-left: 15px;
-  font-size: 90%;
-    color: #4a4949;
-    font-weight:600;
-}
+
+
 .event_details_img_con{
   width: 100%;
   height: 30%;
@@ -319,7 +521,24 @@ overflow: hidden;
 .event_detail_img{
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+}
+.speaker_box{
+  width: 100%;
+  display: row;
+  max-width: 100px;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid green;
+ 
+}
+
+.avatar_url{
+  /* max-width: 50px; */
+  display: flex;
+  justify-self: center;
+align-items: center;
+
 }
 .event_details_name{
   width: 100%;
@@ -485,18 +704,7 @@ overflow: hidden;
   flex-direction: row;
 }
 
-.admin_single_event_container{
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
-  padding-top: 10px;
 
-  /* box-shadow: 10px 10px 10px 5px rgba(0,0,0,0.1); */
-
-}
 .admin_conference_tag{
   width: 100%;          
   max-width: 100%;    
@@ -509,14 +717,7 @@ overflow: hidden;
   box-sizing: border-box;
   
 }
-.tag{
-  width: 100%;
-  height: 90%;
-  /* min-height: 100%; */
- 
-  box-sizing: border-box;
 
-}
 .edit_options{
   width: 100%;
   height: 10%;
@@ -536,7 +737,7 @@ overflow: hidden;
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(224, 224, 224);
-  background-color: #e9e9e9;
+  background-color: #574e4e;
   /* border-radius: 5px; */
   /* margin: 5px; */
   transition: transform 0.1s ease, background-color 0.1s ease;
@@ -545,6 +746,7 @@ overflow: hidden;
   -webkit-user-select: none; 
   -moz-user-select: none; 
   -ms-user-select: none;   
+  color: white;
   
 }
 .delete_button_con:hover{
@@ -625,58 +827,7 @@ overflow: hidden;
   -ms-user-select: none; 
   flex-direction: column;
 }
-.edit_conferences_container{
-  width: 100%;
-  max-width: 500px;
-  flex: 1;
 
-  -ms-overflow-style: none;  
-  scrollbar-width: none;    
-  user-select: none; 
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  justify-content: center;
-  align-items: center;
-
-
-}
-.create_edit_container{
-  width: 100%;
-  max-width: 500px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-
-  
-}
-
-.conference_list_container {
-
-  /* -ms-overflow-style: none; 
-  scrollbar-width: none;    
-  user-select: none; 
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none;   
-   */
-  overflow: auto;
-  /* border: 5px solid blue; */
-  height: 100%;
-}
-
-/* Chrome, Safari, Opera */
-.conference_list_container::-webkit-scrollbar {
-  display: none;
-}
-input[type="date"] {
-  width: 100% !important;
-  min-width: 0;
-  -webkit-appearance: none; /* iOS Safari */
-  -moz-appearance: none;    /* Firefox */
-  appearance: none;
-}
 
 .create_button_con{
      border: 1px solid #dcdcdc;
@@ -765,3 +916,96 @@ input[type="date"] {
   box-sizing: border-box; 
   resize:vertical;          
 }
+
+.conference_speaker_con{
+  width: 100%;
+  /* height: 300px; */
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+
+ 
+}
+
+.conference_speaker_detail_con{
+  width: 100%;
+  /* height: 30px; */
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+}
+.conference_speaker_left{
+  /* width: 300px; */
+  min-width: 100%;
+  /* max-width: 150px; */
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 10px;
+  font-weight: 700;
+  /* border: 2px solid black; */
+  background-color: gray;
+}
+.conference_speaker_bio_{
+  width: 100%;
+  display: flex;
+  /* /* height: 1000px; */
+  flex-direction: column;
+}
+.conference_speaker_right{
+  /* width: 90%; */
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 10px;
+  font-weight: 400;
+
+}
+
+.conference_speaker_admin_con{
+    width: 100%;
+    height: 100%;
+}
+.admin_speaker_con{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 500px;
+}
+
+.admin_speakers{
+  width: 500px;
+  max-width: 500px;
+  /* height: 500px; */
+  /* border: 5px solid green; */
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.speaker{
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  /* flex: 1; */
+
+}
+.img_con{
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page_data{
+  width: 100%;
+
+}
+ 

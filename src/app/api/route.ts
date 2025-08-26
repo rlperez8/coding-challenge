@@ -15,14 +15,15 @@ export async function POST(req: Request) {
       current_attendees,
       category,
       imageurl,
+      speaker,
     } = body
 
     console.log('Body In Route',body)
     await sql`
     INSERT INTO coding_challenge.conferences (
-    id,name,description,date,location,price,current_attendees,max_attendees,category,imageurl)
+    id,name,description,date,location,price,current_attendees,max_attendees,category,imageurl,speaker)
     VALUES (
-    ${uuidv4()},${name},${description},${date},${location},${price},${current_attendees},${max_attendees},${category},${imageurl});`
+    ${uuidv4()},${name},${description},${date},${location},${price},${current_attendees},${max_attendees},${category},${imageurl},${speaker});`
     return Response.json({ message: "Conference added successfully!" });
   }
   catch (err) {
@@ -55,13 +56,27 @@ export async function DELETE(req: Request) {
 }
 export async function GET() {
   try {
-    const result = await sql`SELECT * FROM coding_challenge.conferences`;
-    return new Response(JSON.stringify({ conferences: result.rows }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    // Fetch conferences
+    const conferencesResult = await sql`SELECT * FROM coding_challenge.conferences`;
+
+    // Fetch speakers
+    const speakersResult = await sql`SELECT * FROM coding_challenge.speakers`;
+
+    return new Response(
+      JSON.stringify({
+        conferences: conferencesResult.rows,
+        speakers: speakersResult.rows,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (err) {
-    console.error("Failed to fetch conferences:", err);
-    return new Response(JSON.stringify({ error: "Failed to fetch conferences" }), { status: 500 });
+    console.error("Failed to fetch data:", err);
+    return new Response(
+      JSON.stringify({ error: "Failed to fetch data" }),
+      { status: 500 }
+    );
   }
 }
