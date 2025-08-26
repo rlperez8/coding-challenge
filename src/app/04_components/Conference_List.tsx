@@ -37,49 +37,56 @@ export default function Conference_List() {
     };
 
     const [filteredConferences, setFilteredConferences] = useState<Conference[]>([]);
-
+    
+    console.log(conferences)
     useEffect(() => {
       if (pathname === "/03_user") {
-        setFilteredConferences(conferences.filter(c => c.registerd === true));
+        console.log(conferences)
+        setFilteredConferences(conferences.filter(c => c.registerd === Boolean(c.registerd)));
+        console.log(conferences.filter(c => c.registerd === Boolean(c.registerd)))
       } else {
         setFilteredConferences(conferences);
       }
-    }, [pathname, conferences]); // rerun if route or data changes
-
+    }, [pathname, conferences]); 
+     console.log(pathname)
     return (
   
-        <>
+        <div className="edit_speaker_layout">
+           {pathname === "/02_admin" && (
+         <Link className={'create_button_con'} href="/02_admin/speaker_create">
+            <div>Create</div>
+            </Link> )}
           {filteredConferences.map((conf: Conference, index: number) => (
-            <>
-            <Link key={index}  href={`/01_conference/${conf.id}`} onClick={() => setSelectedConference(conf)}>
-              <Conference_Tag
-                key={conf.id}
-                conf={{
-                  ...conf,
-                  imageurl: conf.imageurl || "/default.png",
-                  name: conf.name || "Unknown",
-                }}
-                onClick={() => setSelectedConference(conf)}
-              />
-            
-            </Link>
-          
-          {pathname === "/02_admin" ? (
-          <div className='edit_options'>
-            <div onClick={()=>{handle_delete_event(conf.id)}} className='delete_button_con'>Delete</div>
-             <Link className='delete_button_con' key={index}  href={`/02_admin/conference_edit/${conf.id}`}>
-                 Edit
-            </Link>
-        </div>
-        ) : (
-  ''
-        )}
-          </>
+            <div key={index}>
+
+                <Link key={index}  href={`/01_conference/${conf.id}`} onClick={() => setSelectedConference(conf)}>
+                  <Conference_Tag
+                    key={conf.id}
+                    conf={{
+                      ...conf,
+                      imageurl: conf.imageurl || "/default.png",
+                      name: conf.name || "Unknown",
+                    }}
+                    onClick={() => setSelectedConference(conf)}
+                  />
+                
+                </Link>
+                
+                {/* Delete Edit Options */}
+                {pathname === "/02_admin" && (
+                <div className='edit_options'>
+
+                    <div onClick={()=>{handle_delete_event(conf.id)}} className='delete_button_con'>Delete</div>
+
+                    <Link className='delete_button_con' key={index}  href={`/02_admin/conference_edit/${conf.id}`}>
+                        Edit
+                    </Link>
+                    
+                  </div>)}
+
+            </div>
             
           ))}
-
-        
-        
-  </>
+        </div>
     );
   }

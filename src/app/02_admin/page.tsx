@@ -3,11 +3,14 @@ import { useConferences } from "@/context/Conference";
 import Conference_List from "../04_components/Conference_List";
 import Speakers_List from "./components/Speakers_List";
 import { useAdmin } from "./context";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 const AdminPage: React.FC = () => {
 
   const {setConferences} = useConferences()
    const { buttonClicked } = useAdmin();
-
+  const pathname = usePathname();
   const handle_delete_event = async (conf_id: string) => {
     try {
       console.log('Deleting conference with ID:', conf_id);
@@ -35,21 +38,15 @@ const AdminPage: React.FC = () => {
 
 
   return (
-    <> 
-
-      {buttonClicked === 'Conference' && 
-
-  
-        <Conference_List/>
- 
-        
-     }
+    
+    <div className="layout_special">
+    <div className={buttonClicked === 'Conference' ? "" : ''}>
+      
+      {buttonClicked === 'Conference' && <Conference_List/>}
       {buttonClicked === 'Speaker' && <Speakers_List/>}
-    </>
+    </div>
 
-     
-
-   
+  </div>
   );
 }
 

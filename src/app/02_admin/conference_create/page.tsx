@@ -123,9 +123,9 @@ const Create_Form = () => {
         <TextInput value={current_attendees} setValue={setCurrent_attendees} placeholder={'Price'}/>
         <div className="select_speaker">
 
-          {speakers.map((skr)=>{
+          {speakers.map((skr,index)=>{
 
-            return(<div className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
+            return(<div key={index} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
             onClick={()=> {set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
               {skr.name}
             </div>)

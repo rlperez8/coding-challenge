@@ -1,7 +1,3 @@
-'use client'
-
-import React from "react"
-
 interface Props {
   speaker: {
     id: string;
@@ -9,18 +5,17 @@ interface Props {
     title: string;
     company: string;
     bio: string;
-    avatar_url: string;
+    avatar_url?: string; // <-- allow undefined
   };
 }
 
 const Conference_Speaker: React.FC<Props> = ({ speaker }) => {
+  if (!speaker) return null; // render nothing if speaker is undefined
+
   return (
-    <div className="conference_speaker_con">
+    <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-4 lg:space-y-0 p-4 bg-gray-100">
       <div className="conference_speaker_image_con">
-        <img
-          src={speaker.avatar_url ?? '/images/speakers/image_1.jpg'}
-          className="event_detail_img"
-        />
+        <img src={`${speaker.avatar_url}`} className="avatar_url" />
       </div>
       <div className="conference_speaker_bio_con">
         <div className="conference_speaker_detail_con">
@@ -44,4 +39,4 @@ const Conference_Speaker: React.FC<Props> = ({ speaker }) => {
   );
 };
 
-export default Conference_Speaker;
+export default Conference_Speaker

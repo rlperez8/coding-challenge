@@ -26,7 +26,7 @@ const Conference_Tag = ({ conf, onClick }: ConferenceTagProps) => {
         <img src={conf.imageurl} alt={conf.name} />
       </div>
       <div className={statusClass}>{status}</div>
-      <div className="conference_tag_name">{conf.category}</div>
+      <div className="conference_tag_name">{conf.name}</div>
       <div className="conference_tag_date">
         {new Date(conf.date).toLocaleDateString("en-US", {
           month: "long",

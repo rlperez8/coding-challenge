@@ -42,6 +42,7 @@ html, body {
   -webkit-tap-highlight-color: transparent; /* remove tap highlight */
 }
 
+
 .pagelayout_outer{
     width: 100%;
     height: 100%;
@@ -111,12 +112,54 @@ html, body {
   max-height: 50px;
   min-height: 50px;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* border: 5px solid red; */
+  box-sizing: border-box;
+
+}
+.admin_header{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+
+}
+.page_header{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 5px;
+  font-size: 120%;
+  font-weight: 600;
+  border-bottom: 2px solid rgb(206, 206, 206);
+  color: #636363;
+}
+.create_header{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* padding-left: 5px; */
+  font-size: 120%;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: teal;
+  color: white;
 }
 
 /* All Conferences */
 .all_conferences {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
   overflow-y: scroll;
-  flex: 1;
 }
 .all_conferences::-webkit-scrollbar {
   display: none;
@@ -124,7 +167,8 @@ html, body {
 .conference_tag{
   width: 100%;        
   max-width: 100%;     
-  height: 220px;       
+  /* height: 220px;        */
+  height: 100%;
   background-color: rgb(245, 245, 245);
   display: flex;
   flex-direction: column;
@@ -134,6 +178,10 @@ html, body {
  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25)
 
 
+}
+.layout_special{
+  /* border: 5px solid green; */
+  height: 100%;
 }
 .ccc{
     width: 100%;
@@ -198,6 +246,9 @@ overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: teal;
+  color: white;
+  font-weight: 600;
 }
 
 
@@ -208,8 +259,8 @@ overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: ;
-
+  overflow: hidden;
+  background-color: rgb(219, 218, 218);
 }
 .admin_page_content{
   /* width: 100%; */
@@ -217,7 +268,9 @@ overflow: hidden;
   display: flex;
   flex-direction: column;
   max-width: 500px;
+  /* min-width: 500px; */
   overflow: scroll;
+  border: 5px solid red;
 }
 .edit_conferences_container{
   width: 100%;
@@ -259,15 +312,15 @@ overflow: hidden;
 
 }
 .create_button_con{
+  justify-content: center;
   width: 100%;
-  height: 5%;
-  max-height: 10%;
-  max-height: 50px;
-
-  /* height: 55px; */
+  height: auto;
   display: flex;
   align-items: center;       
   background-color: #fff;
+  background-color: teal;
+  color: white;
+  border: 5px solid red;
 }
 .admin_single_event_container{
   width: 100%;
@@ -289,7 +342,11 @@ overflow: hidden;
   box-sizing: border-box;
 
 }
-
+.con_con{
+  width: 100%;
+  border: 5px solid black;
+  height: 100%;
+}
 /* Edit Speaker Layout */
 .edit_speaker_layout{
   width: 100%;
@@ -313,7 +370,7 @@ overflow: hidden;
 /* Create Conference Form */
 .select_speaker{
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   border: 1px solid black;
   display: flex;
   justify-content: left;
@@ -810,22 +867,25 @@ align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.speaker_create_form{
+  
+    width: 100%;
+    height: 100%;
+    /* border: 5px solid green; */
+    background-color: gray;
+}
 .create_form_container{
 
   display: flex;
   justify-content: center;
-  /* border: 2px solid orange; */
+
   max-width: 500px;
   background-color: white;
   padding: 10px;
-  overflow-y: auto; /* still scrollable */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-  user-select: none; 
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
+
   flex-direction: column;
+  overflow-y: scroll;
+  
 }
 
 
@@ -860,6 +920,9 @@ align-items: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
+  background-color: teal;
+  color: white;
 }
 .empty_value_error{
   width: 100%;
@@ -872,8 +935,8 @@ align-items: center;
 }
 .select_image_con{
   width: 100%;
-  height: 300px;
-  overflow-y: scroll;
+  /* height: 300px; */
+  /* overflow-y: scroll; */
   border: 1px solid rgb(0, 0, 0);
   padding: 10px;
   background-color: rgb(202, 202, 202);

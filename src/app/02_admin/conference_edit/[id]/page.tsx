@@ -3,26 +3,20 @@ import React, { useState, useEffect } from "react";
 import TextInput from "../../components/textInput";
 import { useConferences } from "@/context/Conference";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+const Edit_Form = () => {
 
-const Create_Form = () => {
-
+  const router = useRouter();
   const params = useParams();
+  
   const conferenceId = params.id;
+
+  const {speakers, conferences, setConferences, setSpeakers, setSelectedConference} = useConferences()
+  const conference = conferences.find(c => c.id === conferenceId);
   
 
-  const {speakers, conferences} = useConferences()
-  const conference = conferences.find(c => c.id === conferenceId);
 
   const [images, setImages] = useState<string[]>([]);
-
-  useEffect(() => {
-    const total = 3;
-    const files = Array.from({ length: total }, (_, i) => 
-      `/images/conference_images/image_${i + 1}.png` 
-    );
-    setImages(files);
-  }, []);
-
   const [name, setName] = useState<string>(conference?.name.toString() ?? "");
   const [description, setDescription] = useState<string>(conference?.description.toString() ?? "");
   const [date, setDate] = useState<string>(conference?.date.toString() ?? "");
@@ -34,78 +28,90 @@ const Create_Form = () => {
   const [imageurl, setimageurl] = useState<string>(conference?.imageurl ?? "");
   const [speakerID, setSpeakerID] = useState<string>("");
   const [missingValue, setMissingValue] = useState('') 
-  
-
   const speaker = speakers.find(s => s.id === conference?.speaker);
   const [selected_speaker, set_selected_speaker] = useState(speaker?.name)
 
-  console.log(speaker)
-  const handleSubmit = async () => {
-  // Validation
-  if (!name) return setMissingValue("Name");
-  if (!description) return setMissingValue("Description");
-  if (!date) return setMissingValue("Date");
-  if (!location) return setMissingValue("Location");
-  if (!price) return setMissingValue("Price");
-  // Optional: Check for at most 2 decimal places
-    if (!/^\d+(\.\d{1,2})?$/.test(price)) {
-      return setMissingValue("Price must have at most 2 decimal places");
-    }
-  if (!category) return setMissingValue("Category");
-  if (!max_attendees) return setMissingValue("Max Attendees");
-  if (!current_attendees) return setMissingValue("Current Attendees");
-  if (!imageurl) return setMissingValue("Image");
-  if (isNaN(Number(max_attendees))) {return setMissingValue("Max Attendees must be a number")}
-  if (isNaN(Number(current_attendees))) {return setMissingValue("Max Attendees must be a number")}
-  if (Number(current_attendees) > Number(max_attendees)) {
-  return setMissingValue("Current must be lower than Max Attendees");
-}
+  const handleUpdate = async () => {
 
-  setMissingValue(""); // Clear any previous missing value
+      if (!selected_speaker) return setMissingValue('Speaker');
+      if (!name) return setMissingValue("Name");
+      if (!description) return setMissingValue("Description");
+      if (!date) return setMissingValue("Date");
+      if (!location) return setMissingValue("Location");
+      if (!price) return setMissingValue("Price");
+      if (!/^\d+(\.\d{1,2})?$/.test(price)) {
+        return setMissingValue("Price must have at most 2 decimal places");
+      }
+      if (!category) return setMissingValue("Category");
+      if (!max_attendees) return setMissingValue("Max Attendees");
+      if (!current_attendees) return setMissingValue("Current Attendees");
+      if (!imageurl) return setMissingValue("Image");
+      if (isNaN(Number(max_attendees))) {return setMissingValue("Max Attendees must be a number")}
+      if (isNaN(Number(current_attendees))) {return setMissingValue("Max Attendees must be a number")}
+      if (Number(current_attendees) > Number(max_attendees)) {
+      return setMissingValue("Current must be lower than Max Attendees");
+      }
 
-  // Prepare data
-  const x = {
-    name,
-    description,
-    date,
-    location,
-    price: Number(price),
-    category,
-    max_attendees: Number(max_attendees),
-    current_attendees: Number(current_attendees),
-    imageurl: imageurl,
-    speaker: speakerID,
-  };
+      setMissingValue(""); 
 
- 
-
-  try {
-      const res = await fetch("/api", {
-      method: "POST",
+    try {
+    // 1️⃣ Send the updated conference to your API
+    const res = await fetch(`/api/conferences`, { 
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(x), 
+      body: JSON.stringify({
+        id: conference?.id,
+        name,
+        description,
+        date,
+        location,
+        price,
+        max_attendees,
+        current_attendees,
+        category,
+        imageurl,
+        speakerID,
+      }),
     });
 
-     console.log("Sending:", x);
+    const updatedConference = await res.json(); 
+    setConferences(prev =>
+      prev.map(conf => (conf.id === updatedConference.id ? updatedConference : conf))
+    );
+    setSelectedConference(updatedConference);
 
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || "Failed to create conference");
-    }
 
-    const result = await res.json();
-    console.log("Created:", result);
+    router.push(`/01_conference/${conference?.id}`);
 
   } catch (err) {
-    console.error("Error submitting conference:", err);
+    console.error(err);
   }
   };
 
-  
+  const fetchConferencesAndSpeakers = async () => {
+    try {
+      const res = await fetch("/api");
+      const data = await res.json();
+      setConferences(data.conferences);
+      setSpeakers(data.speakers);
+    } catch (err) {
+      console.error("Failed to fetch data:", err);
+    }
+  };
 
+
+
+  useEffect(() => {
+    const total = 3;
+    const files = Array.from({ length: total }, (_, i) => 
+      `/images/conference_images/image_${i + 1}.png` 
+    );
+    setImages(files);
+  }, []);
 
   return (
     <div className="create_form_container">
+      
       {missingValue.length > 0 && <div className="empty_value_error">Missing {missingValue} Value</div>}
 
         <TextInput value={name} setValue={setName} placeholder={conference?.name}/>
@@ -127,12 +133,14 @@ const Create_Form = () => {
         <TextInput value={category} setValue={setCategory} placeholder={conference?.category}/>
         <TextInput value={max_attendees} setValue={setMax_attendees} placeholder={conference?.max_attendees.toString().toString()}/>
         <TextInput value={current_attendees} setValue={setCurrent_attendees} placeholder={conference?.price.toString()}/>
+
+        
         <div className="select_speaker">
 
-          {speakers.map((skr)=>{
+          {speakers.map((skr, item)=>{
 
-            return(<div className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
-            onClick={()=> {set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
+            return(<div key={item} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
+            onClick={()=> {console.log(skr.id);set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
               {skr.name}
             </div>)
           })}
@@ -155,11 +163,11 @@ const Create_Form = () => {
 
         }
 
-        <div className="submit_button" onClick={()=>{handleSubmit()}}>Submit</div>
- 
+      
+   <div className="submit_button" onClick={()=>{handleUpdate()}}>Save</div>
       
     </div>
   );
 };
 
-export default Create_Form;
+export default Edit_Form;
