@@ -4,7 +4,7 @@ import React from "react"
 
 import { useConferences } from "@/context/Conference"
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+
 const Header: React.FC = () => {
 
     const {conferences} = useConferences()

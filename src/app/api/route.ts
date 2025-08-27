@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres";
-import { mockConferences } from "@/data/mockConference";
 import { v4 as uuidv4 } from "uuid";
 
 

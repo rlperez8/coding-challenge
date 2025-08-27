@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ConferenceProvider } from '../context/Conference';
 import { NavHeaderProvider } from "./04_components/NavBarProvider";
 import "./globals.css";
-import Header from "./04_components/Header";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
