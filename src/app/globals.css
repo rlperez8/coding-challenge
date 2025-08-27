@@ -1098,8 +1098,37 @@ align-items: center;
    width: 100%;
    min-width: 100%;
    height: 100%;
+   /* background-color: blue; */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 2px solid gray;
+   border-radius: 5px ;
 }
+.conf_create{
+    height: 100%;
+    width: 100%;
+    display: flex;
+ 
+    justify-content: center;
+    align-items: center;
+  }
 
+  .create_con_button{
+    width: 50%;
+    border: 5px solid red;
+    display: flex;
+    border: 2px solid gray;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    min-width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: teal;
+    color: white;
+    font-weight: 500;
+  }
 
 
 

@@ -6,19 +6,18 @@ import Conference_Tag from "./Conference_Tag";
 import { Conference } from "@/context/Conference";
 
 import { usePathname } from "next/navigation";
-
+import { useNavHeader } from "./NavBarProvider";
 
 export default function Conference_List() {
 
     const {conferences, setConferences, setSelectedConference, filteredConferences, setFilteredConferences} = useConferences();
     const pathname = usePathname();
-
+    const { selectedFilter, setSelectedFilter, buttonClicked, setButtonClicked } = useNavHeader();
 
     const handle_delete_event = async (conf_id: string) => {
   try {
     console.log("Deleting conference with ID:", conf_id);
 
-    // Send DELETE request to API
     const res = await fetch("/api", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -26,20 +25,44 @@ export default function Conference_List() {
     });
 
     const response = await res.json();
-    console.log("Response data:", response.data);
 
-    if (res.ok && Array.isArray(response.data)) {
-      // Sort the updated conferences by name (alphabetically)
-      const sortedConferences = [...response.data].sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
 
-      // Update state with sorted data
-      setFilteredConferences(sortedConferences);
-      console.log("Conferences updated and sorted successfully!");
-    } else {
-      alert(`Error deleting conference: ${response.error || "Unknown error"}`);
+  
+    if (selectedFilter === 'Sold') {
+  const filtered = response.data
+    .filter((c: Conference) => c.current_attendees === c.max_attendees)
+    .sort((a: Conference, b: Conference) => a.name.localeCompare(b.name));
+
+  setFilteredConferences(filtered);
     }
+
+    if (selectedFilter === 'Open') {
+      const filtered = response.data
+        .filter(
+          (c: Conference) =>
+            new Date(c.date) >= new Date() && c.current_attendees < c.max_attendees
+        )
+        .sort((a: Conference, b: Conference) => a.name.localeCompare(b.name));
+
+      setFilteredConferences(filtered);
+    }
+
+    if (selectedFilter === 'Closed') {
+      const filtered = response.data
+        .filter((c: Conference) => new Date(c.date) < new Date())
+        .sort((a: Conference, b: Conference) => a.name.localeCompare(b.name));
+
+      setFilteredConferences(filtered);
+    }
+
+    if (selectedFilter === 'All') {
+      const filtered = response.data
+        .sort((a: Conference, b: Conference) => a.name.localeCompare(b.name));
+
+        setFilteredConferences(filtered);
+    }
+
+
   } catch (err) {
     console.error("Delete failed:", err);
     alert("Failed to delete conference");
@@ -47,21 +70,16 @@ export default function Conference_List() {
     };
 
 
-
-
-
-
-     
     return (
   
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 m-4 gap-4">
 
             {/* Create Button */}
-            {/* {pathname === "/02_admin" && (
-          <Link className={'create_button_con'} href="/02_admin/conference_create">
-              <div>Create</div>
-            </Link> )} */}
+            {pathname === "/02_admin" && (
+          <Link className={'conf_create'} href="/02_admin/conference_create">
+              <div className="create_con_button">Create</div>
+            </Link> )}
 
             {/* Data */}
             {filteredConferences.map((conf: Conference, index: number) => (

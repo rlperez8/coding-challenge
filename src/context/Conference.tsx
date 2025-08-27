@@ -9,7 +9,6 @@ export interface Speaker {
   bio: string;
   avatar_url?: string;
 }
-
 export interface Conference {
   id: string;
   name: string;
@@ -37,7 +36,6 @@ interface ConferenceContextType {
 }
 
 const ConferenceContext = createContext<ConferenceContextType | undefined>(undefined);
-
 let fetchedOnce = false;
 let cachedConferences: Conference[] = [];
 let cachedSpeakers: Speaker[] = [];
@@ -55,8 +53,11 @@ export const ConferenceProvider: React.FC<{ children: React.ReactNode }> = ({ ch
           const res = await fetch("/api");
           const data = await res.json();
 
-          setConferences(data.conferences);
-          setFilteredConferences(data.conferences); // initial filter = all
+          let d = data.conferences.sort((a: Conference, b: Conference) =>
+            a.name.localeCompare(b.name)
+          );
+          setConferences(d);
+          setFilteredConferences(d);
           setSpeakers(data.speakers);
 
           cachedConferences = data.conferences;

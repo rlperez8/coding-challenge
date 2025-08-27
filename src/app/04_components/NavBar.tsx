@@ -3,10 +3,12 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useConferences } from "@/context/Conference";
 import { useState } from "react";
-import Image from "next/image";
+import { useNavHeader } from "./NavBarProvider";
+
 const NavBar: React.FC = () => {
   const pathname = usePathname();
 
+   const { selectedFilter, setSelectedFilter, buttonClicked, setButtonClicked } = useNavHeader();
    const { conferences, setFilteredConferences} = useConferences(); 
    const [selected_filter, set_selected_fitler] = useState('All')
 
@@ -22,6 +24,7 @@ const NavBar: React.FC = () => {
       .sort((a,b) => a.name.localeCompare(b.name))
       setFilteredConferences(filtered)
       console.log(filtered)
+      setSelectedFilter('Sold')
     }
 
     const handle_closed = () => {
@@ -31,6 +34,7 @@ const NavBar: React.FC = () => {
 
       setFilteredConferences(filtered);
       console.log(filtered);
+      setSelectedFilter('Closed')
     };
 
     const handle_open = () => {
@@ -39,6 +43,7 @@ const NavBar: React.FC = () => {
       .sort((a, b) => a.name.localeCompare(b.name));
       setFilteredConferences(filtered);
       console.log(filtered);
+      setSelectedFilter('Open')
     };
     const handle_all = () => {
       
@@ -46,6 +51,7 @@ const NavBar: React.FC = () => {
       .sort((a, b) => a.name.localeCompare(b.name));
       setFilteredConferences(filtered);
       console.log(conferences);
+      setSelectedFilter('All')
     };
     
     
