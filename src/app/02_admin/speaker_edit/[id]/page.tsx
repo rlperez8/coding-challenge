@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import TextInput from "../../components/textInput";
 import { useConferences } from "@/context/Conference";
 import { useParams } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 const Speaker_Edit = () => {
 
   const params = useParams();
@@ -95,12 +95,12 @@ const Speaker_Edit = () => {
                 {imageurl === '' ? 
                   <div className="select_image_con">
                     {images.map((src, i) => (
-                      <Image onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
+                      <img onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
                     ))}
                   </div> 
                   : 
                   <>
-                    <Image className="selected_image_con" src={imageurl} alt="Selected Conference"/>
+                    <img className="selected_image_con" src={imageurl} alt="Selected Conference"/>
                     <div className="change_image_con" onClick={() => setimageurl("")}> Change Speaker </div>
                   </>
                 }

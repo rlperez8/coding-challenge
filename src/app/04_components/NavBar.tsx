@@ -55,15 +55,15 @@ const NavBar: React.FC = () => {
     <nav className="navigation_bar">
 
         <Link className={selected === "Home" ? "filter_opt_active" : "filter_opt"} href="/">
-          <Image className='icon_img' src="/images/icons/event_list.png" alt="Home Icon" />
+          <img className='icon_img' src="/images/icons/event_list.png" alt="Home Icon" />
         </Link>
   
         <Link className={selected === "Admin" ? "filter_opt_active" : "filter_opt"} href="/02_admin">
-          <Image className='icon_img' src="/images/icons/admin.png" alt="Admin Icon" />
+          <img className='icon_img' src="/images/icons/admin.png" alt="Admin Icon" />
         </Link>
 
         <Link className={selected === "User" ? "filter_opt_active" : "filter_opt"} href="/03_user">
-          <Image className='icon_img' src="/images/icons/user.png" alt="User Icon" />
+          <img className='icon_img' src="/images/icons/user.png" alt="User Icon" />
         </Link>
 
 

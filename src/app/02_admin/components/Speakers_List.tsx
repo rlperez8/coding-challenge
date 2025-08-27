@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useConferences } from "@/context/Conference";
-import Image from 'next/image';
+// import Image from 'next/image';
 const Speakers_List = () => {
     const {speakers} = useConferences()
 
@@ -25,10 +25,10 @@ const Speakers_List = () => {
               <div className="conference_speakers_inner">
 
                   <div className="conference_speaker_image_con">
-                    <Image src={speaker.avatar_url || "Speaker Avatar"} 
-                      alt={speaker.name || "Speaker Avatar"} 
-                      fill 
-                      className="object-cover rounded-full"
+                    <img src={speaker.avatar_url} 
+                      alt={speaker.name} 
+                  
+      
                     />
                   </div>
                         

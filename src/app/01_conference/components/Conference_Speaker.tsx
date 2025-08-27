@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 interface Props {
   speaker: {
     id: string;
@@ -16,11 +16,11 @@ const Conference_Speaker: React.FC<Props> = ({ speaker }) => {
   return (
     <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-4 lg:space-y-0 p-4 bg-gray-100">
       <div className="conference_speaker_image_con">
-       <Image
-            src={speaker.avatar_url || "Speaker Avatar"}
-            alt={speaker.name || "Speaker Avatar"}
-            fill
-            className="object-cover rounded-full"
+       <img
+            src={speaker.avatar_url}
+            alt={speaker.name}
+     
+
           />
       </div>
       <div className="conference_speaker_bio_con">

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useConferences } from "@/context/Conference";
-import Image from "next/image";
+
 
 const EventSummary: React.FC = () => {
   const { selectedConference } = useConferences();
@@ -50,7 +50,7 @@ const EventSummary: React.FC = () => {
       <div className={event_header.trim()}>{selectedConference.category}</div>
       <div className="event_details_date_con">
         <div className="event_deails_date_icon">
-          <Image src="/images/icons/calender.png" alt="My Icon" />
+          <img src="/images/icons/calender.png" alt="My Icon" />
         </div>
         <div className={event_name_css}>
           {new Date(selectedConference.date).toLocaleDateString("en-US", {
@@ -62,19 +62,19 @@ const EventSummary: React.FC = () => {
       </div>
       <div className="event_details_date_con">
         <div className="event_deails_date_icon">
-          <Image src="/images/icons/location.png" alt="My Icon" />
+          <img src="/images/icons/location.png" alt="My Icon" />
         </div>
         <div className={event_name_css}>{selectedConference.location}</div>
       </div>
       <div className="event_details_date_con">
         <div className="event_deails_date_icon">
-          <Image src="/images/icons/dollar.png" alt="My Icon" />
+          <img src="/images/icons/dollar.png" alt="My Icon" />
         </div>
         <div className={event_name_css}>{selectedConference.price}</div>
       </div>
       <div className="event_details_date_con">
         <div className="event_deails_date_icon">
-          <Image src="/images/icons/people.png" alt="My Icon" />
+          <img src="/images/icons/people.png" alt="My Icon" />
         </div>
         <div className={event_name_css}>
           {selectedConference.current_attendees} of {selectedConference.max_attendees}
