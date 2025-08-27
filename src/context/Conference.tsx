@@ -53,7 +53,7 @@ export const ConferenceProvider: React.FC<{ children: React.ReactNode }> = ({ ch
           const res = await fetch("/api");
           const data = await res.json();
 
-          let d = data.conferences.sort((a: Conference, b: Conference) =>
+          const d = data.conferences.sort((a: Conference, b: Conference) =>
             a.name.localeCompare(b.name)
           );
           setConferences(d);
