@@ -75,7 +75,108 @@ html, body {
   display: flex;
   justify-content: center; 
   align-items: center;   
+  font-weight: 600;
+  font-size: 150%;
+
   
+}
+.filter_opt_open{
+ 
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  font-weight: 300;
+  font-size: 100%;
+  border: 2px inset gray;
+  border-radius: 15px;
+  background-color: rgb(136, 209, 209)
+
+}
+.filter_opt_sold{
+ 
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  font-weight: 600;
+  font-size: 150%;
+  border: 2px inset gray;
+  border-radius: 15px;
+  background-color: rgb(230, 205, 152);
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.filter_opt_closed{
+ 
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  font-weight: 600;
+  font-size: 150%;
+  border: 2px inset gray;
+  border-radius: 15px;
+  background-color: rgb(226, 224, 224);
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.filter_opt {
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 100%;
+  color: rgb(203, 194, 194);
+
+  /* Add transition */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer; /* make it look clickable */
+}
+
+.filter_opt_active {
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 100%;
+  color: rgb(241, 247, 243);
+  background-color: rgb(184, 184, 184);
+  border-radius: 10px;
+  border: 2px inset white;
+
+  /* Same transition so it animates when toggling */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.filter_options{
+  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   margin-top: auto;        /* Push this div to the bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;  
+  border-radius: 10px;
 }
 .icon_con, .icon_selected {
   transition: transform 0.1s, background-color 0.1s;
@@ -107,6 +208,10 @@ html, body {
 }
 
 /* Header */
+.conference_speaker_options_static{
+  height: 55px;
+  width: 100%;
+}
 .header{
   height: 50px;
   max-height: 50px;
@@ -167,21 +272,22 @@ html, body {
 .conference_tag{
   width: 100%;        
   max-width: 100%;     
-  /* height: 220px;        */
   height: 100%;
+  max-height: 275px;
+  min-height: 275px;
   background-color: rgb(245, 245, 245);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* border: 5px solid red; */
   border-radius: 10px;
- box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25)
-
-
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25)
 }
 .layout_special{
   /* border: 5px solid green; */
   height: 100%;
+}
+.hello{
+  width: 50px;
 }
 .ccc{
     width: 100%;
@@ -190,9 +296,19 @@ html, body {
     margin-bottom: 10px;
     overflow: hidden;
 }
+
+.con_{
+  width: 100%;
+  height: 100%;
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  padding: 15px;
+}
 .conference_tag_image{
   width: 100%;
-  /* height: 50px; */
+  min-height: 150px;
+  max-height: 150px;
+  /* height: 100px; */
 overflow: hidden;
   /* min-width: 500px; */
   box-sizing: border-box;
@@ -202,7 +318,8 @@ overflow: hidden;
   overflow: hidden;
   /* border: 2px solid red; */
   box-sizing: border-box;
-
+  overflow: hidden;
+  
 }
 .conference_tag_name{
   width: 100%;
@@ -251,7 +368,12 @@ overflow: hidden;
   font-weight: 600;
 }
 
-
+.conf_page_con{
+  width: 100%;
+  height: 100%;
+  /* border: 10px solid orange; */
+  overflow: scroll;
+}
 /* Admin Layout */
 .admin_layout{
   width: 100%;
@@ -259,8 +381,9 @@ overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  background-color: rgb(219, 218, 218);
+  overflow: scroll;
+  /* background-color: rgb(219, 218, 218);
+  background-color: blue; */
 }
 .admin_page_content{
   /* width: 100%; */
@@ -287,15 +410,26 @@ overflow: hidden;
   
 }
 .conference_speaker_options {
+    width: 100%;
+    overflow: hidden;
+    max-width: 500px;
+    height: 0px;
+    display: flex;
+    align-items: center;       
+    background-color: #fff;
+    transition: height 0.5s ease, opacity 0.5s ease;
+}
+.conference_speaker_options_active {
+    
   width: 100%;
-  height: 5%;
-  max-height: 10%;
-  max-height: 50px;
+  overflow: hidden;
+  height: 50px;
   max-width: 500px;
-  /* height: 55px; */
   display: flex;
   align-items: center;       
-  background-color: #fff;
+  background-color: #fff;    
+  opacity: 1;      
+  transition: height 0.5s ease, opacity 0.5s ease;   
 }
 .admin_mid_layout{
   width: 100%;
@@ -311,17 +445,7 @@ overflow: hidden;
   height: 50%;
 
 }
-.create_button_con{
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;       
-  background-color: #fff;
-  background-color: teal;
-  color: white;
-  border: 5px solid red;
-}
+
 .admin_single_event_container{
   width: 100%;
   max-width: 500px;
@@ -343,19 +467,75 @@ overflow: hidden;
 
 }
 .con_con{
-  width: 100%;
-  border: 5px solid black;
-  height: 100%;
+  /* width: 100%;
+  border: 5px solid rgb(128, 51, 51);
+  height: 100%; */
+  
 }
 /* Edit Speaker Layout */
 .edit_speaker_layout{
   width: 100%;
-  max-width: 500px;
-  height: 100px;
-  min-height: 100%;
+  height: 100%;
 
 }
+.inner_speaker_layout{
+  width: 100%;
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  /* background-color: rgb(239, 239, 239); */
+  align-items: center;
+    border-radius: 15px;
+    /* border: 2px solid green; */
 
+}
+.conference_speakers_con{
+  max-width: 500px;
+  height: 100%;
+  border: 2px solid rgb(220, 219, 219);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 5px;
+
+}
+.test_fix{
+    width: 100%;
+    max-width: 475px;
+    height: 50px;
+    display: flex;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 5px; */
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(226, 224, 224);
+    border-image: initial;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120%;
+    font-weight: 600;
+    color: teal;
+}
+.conference_speakers_inner{
+  max-width: 500px;
+  height: 100%;
+  border: 2px solid rgb(226, 224, 224);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.1);
+
+}
 .conference_speaker_bio_con{
   width: 100%;
   /* height: 100%; */
@@ -364,9 +544,17 @@ overflow: hidden;
 .conference_speaker_image_con{
   width: 100%;
   /* flex: 1; */
+  /* border: 5px solid red; */
+  /* padding: 5px; */
+  border: 2px inset rgb(192, 192, 192);
+  border-radius: 5px ;
+  background-color: white;
 
 }
-
+.row_title{
+  font-weight: 600;
+  font-size: 100%;
+}
 /* Create Conference Form */
 .select_speaker{
   width: 100%;
@@ -586,7 +774,7 @@ overflow: hidden;
   max-width: 100px;
   justify-content: center;
   align-items: center;
-  border: 5px solid green;
+  /* border: 5px solid green; */
  
 }
 
@@ -775,18 +963,33 @@ align-items: center;
   
 }
 
-.edit_options{
+.edit_options_active{
   width: 100%;
-  height: 10%;
-
-
+  height: 30px;
+  max-height: 30px;
+  min-height: 30px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-
   box-sizing: border-box;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  
 }
+.edit_options{
+  width: 100%;
+  height: 30px;
+  max-height: 30px;
+  min-height: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  
+}
+
 .delete_button_con{
   width: 50%;
   height: 100%;
@@ -846,7 +1049,8 @@ align-items: center;
   align-items: center;
   font-weight: 500;
   font-size: 120%;
-      background-color: #dfdfdf;
+  background-color: teal;
+  color: white;
 }
 
 
@@ -868,11 +1072,12 @@ align-items: center;
   overflow-x: hidden;
 }
 .speaker_create_form{
-  
-    width: 100%;
+  background-color: white;
+    max-width: 500;
     height: 100%;
-    /* border: 5px solid green; */
-    background-color: gray;
+
+  padding: 10px;
+  
 }
 .create_form_container{
 
@@ -885,33 +1090,18 @@ align-items: center;
 
   flex-direction: column;
   overflow-y: scroll;
+ 
   
 }
-
 
 .create_button_con{
-     border: 1px solid #dcdcdc;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-size: 120%;
-    font-weight: 500;
-    display: flex;
-    width: 100%;
-    max-width: 500px;
-    height: 55px;
-  
+   width: 100%;
+   min-width: 100%;
+   height: 100%;
 }
-.create_button_con {
-  transition: transform 0.1s, 
-  background-color 0.1s;
-}
-.create_button_con:active {
-  transform: scale(0.95);
 
-}
+
+
 
 .submit_button{
   width: 100%;
@@ -935,6 +1125,7 @@ align-items: center;
 }
 .select_image_con{
   width: 100%;
+  min-width: 350px;
   /* height: 300px; */
   /* overflow-y: scroll; */
   border: 1px solid rgb(0, 0, 0);
@@ -947,7 +1138,7 @@ align-items: center;
 .change_image_con{
   width: 100%;
   /* height: 10px; */
-  background-color: rgb(47, 162, 194);
+  background-color: rgb(61, 63, 64);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -968,10 +1159,17 @@ align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.ta{
+  width: 100%;
+  height: 250px;
+}
 .text_area textarea {
   width: 100%;
-  height: 100px;
-  min-height: 100px;
+  height: 250px;
+  
+ 
+  /* min-width: 470px; */
+  max-width: 470px;
   background-color: rgb(253, 253, 253);
   border: 1px solid black;
   border-radius: 5px;
@@ -1013,7 +1211,7 @@ align-items: center;
   padding-left: 10px;
   font-weight: 700;
   /* border: 2px solid black; */
-  background-color: gray;
+  background-color: rgb(231, 231, 231);
 }
 .conference_speaker_bio_{
   width: 100%;

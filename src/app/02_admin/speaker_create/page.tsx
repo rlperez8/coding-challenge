@@ -27,7 +27,7 @@ const Speaker_Create = () => {
   const [images, setImages] = useState<string[]>([]);
   
   useEffect(() => {
-    const total = 2;
+    const total = 3;
     const files = Array.from({ length: total }, (_, i) => 
       `/images/speakers/image_${i + 1}.jpg` 
     );
@@ -79,11 +79,21 @@ const Speaker_Create = () => {
 
 
   return (
-    <div className="speaker_create_form">
+  <div className="edit_speaker_layout"> 
+        <div className='inner_speaker_layout'>
+          <div className="conference_speakers_con">
 
+      <div className="row_title">Name</div>
       <TextInput value={speakerName} setValue={setSpeakerName} placeholder={'Name'}/>
+
+      <div className="row_title">Title</div>
       <TextInput value={title} setValue={setTitle} placeholder={'Title'}/>
+
+      <div className="row_title">Company</div>
       <TextInput value={company} setValue={setCompany} placeholder={'Company'}/>
+
+      <div className="row_title">Description</div>
+      <div className="ta">
       <div className="text_area">
               <textarea
                 name="description"
@@ -94,20 +104,10 @@ const Speaker_Create = () => {
                 placeholder={'Description'}
             />
             </div>
+</div>
+ 
 
-      Select Speaker
-      <div className="select_speaker">
-
-          {speakers.map((skr,index)=>{
-
-            return(<div key={index} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
-            onClick={()=> {set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
-              {skr.name}
-            </div>)
-          })}
-        </div>
-
-      <div>Select Image</div>
+      <div className="row_title">Speaker</div>
 
         {imageurl === '' ? 
           <div className="select_image_con">
@@ -125,7 +125,7 @@ const Speaker_Create = () => {
 
         <div className="submit_button" onClick={()=>{handleSubmit()}}>Submit</div>
       
-    </div>
+    </div>    </div>    </div>
   );
 };
 

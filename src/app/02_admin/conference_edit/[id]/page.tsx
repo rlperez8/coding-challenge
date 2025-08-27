@@ -55,7 +55,7 @@ const Edit_Form = () => {
       setMissingValue(""); 
 
     try {
-    // 1️⃣ Send the updated conference to your API
+
     const res = await fetch(`/api/conferences`, { 
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -102,7 +102,7 @@ const Edit_Form = () => {
 
 
   useEffect(() => {
-    const total = 3;
+    const total = 1;
     const files = Array.from({ length: total }, (_, i) => 
       `/images/conference_images/image_${i + 1}.png` 
     );
@@ -110,12 +110,18 @@ const Edit_Form = () => {
   }, []);
 
   return (
-    <div className="create_form_container">
+    
+  <div className="edit_speaker_layout"> 
+        <div className='inner_speaker_layout'>
+          <div className="conference_speakers_con">
       
       {missingValue.length > 0 && <div className="empty_value_error">Missing {missingValue} Value</div>}
 
+          <div className="row_title">Name</div>
         <TextInput value={name} setValue={setName} placeholder={conference?.name}/>
-   
+
+         <div className="row_title">Description</div>
+         <div className="ta">
       <div className="text_area">
         <textarea
           name="description"
@@ -125,29 +131,25 @@ const Edit_Form = () => {
           }
           placeholder={conference?.description ? conference?.description : ''}
       />
+     </div>
       </div>
-
+      
+      <div className="row_title">Date</div>
         <TextInput value={date} setValue={setDate} placeholder={conference?.date}/>
+        <div className="row_title">Location</div>
         <TextInput value={location} setValue={setLocation} placeholder={conference?.location}/>
+        <div className="row_title">Price</div>
         <TextInput value={price} setValue={setPrice} placeholder={conference?.price.toString()}/>
+        <div className="row_title">Technology</div>
         <TextInput value={category} setValue={setCategory} placeholder={conference?.category}/>
+        <div className="row_title">Max Attendees</div>
         <TextInput value={max_attendees} setValue={setMax_attendees} placeholder={conference?.max_attendees.toString().toString()}/>
+        <div className="row_title">Current Attendees</div>
         <TextInput value={current_attendees} setValue={setCurrent_attendees} placeholder={conference?.price.toString()}/>
 
-        
-        <div className="select_speaker">
+  
 
-          {speakers.map((skr, item)=>{
-
-            return(<div key={item} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
-            onClick={()=> {console.log(skr.id);set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
-              {skr.name}
-            </div>)
-          })}
-        </div>
-        
-
-        <div>Select Image</div>
+        <div className="row_title">Speaker</div>
 
         {imageurl === '' ? 
           <div className="select_image_con">
@@ -166,6 +168,8 @@ const Edit_Form = () => {
       
    <div className="submit_button" onClick={()=>{handleUpdate()}}>Save</div>
       
+    </div>
+    </div>
     </div>
   );
 };

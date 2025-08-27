@@ -1,7 +1,15 @@
 
-// app/page.tsx
-import { redirect } from "next/navigation";
+import Conference_List from "./04_components/Conference_List";
 
-export default function Home() {
-  redirect("/01_conference");
+export default function Conferences_Page() {
+  
+  
+  return (
+
+     <div className="conf_page_con">
+         <Conference_List/>
+      </div>
+       
+ 
+  );
 }

@@ -13,16 +13,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   
   return (
     <AdminProvider>
-      <div className="admin_layout">
-
-        {/* Conference Speaker Option */}
-        <Create_Edit />
-      
-        {/* Data */}
+      <div className="conf_page_con">
         {children}
-  
-
-          
       </div>
     </AdminProvider>
   );

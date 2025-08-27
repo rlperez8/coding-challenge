@@ -16,7 +16,8 @@ const Conference_Details: React.FC = () => {
    <div className="conference_details">
     
       <div className="event_details_img_con">
-        <img src={selectedConference?.imageurl} alt={selectedConference?.name} className="event_detail_img" />
+<img src={`/${selectedConference?.imageurl}`} alt={selectedConference?.name} className="event_detail_img" />
+
       </div>
 
         {selectedConference?.registerd ? <div className="conference_register">You are registered for this conference!</div>

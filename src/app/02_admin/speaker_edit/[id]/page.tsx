@@ -82,53 +82,65 @@ const Speaker_Edit = () => {
 
 
   return (
-    <div className="speaker_create_form">
+      <div className="edit_speaker_layout"> 
+        <div className='inner_speaker_layout'>
+          <div className="conference_speakers_con">
+              <div className="row_title">Name</div>
+              <TextInput value={speakerName} setValue={setSpeakerName} placeholder={current_speaker?.name}/>
 
-      <TextInput value={speakerName} setValue={setSpeakerName} placeholder={current_speaker?.name}/>
-      <TextInput value={title} setValue={setTitle}  placeholder={current_speaker?.title}/>
-      <TextInput value={company} setValue={setCompany}  placeholder={current_speaker?.company}/>
-      <div className="text_area">
-              <textarea
-                name="description"
-                value={bio}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                  setBio(e.target.value)
+              <div className="row_title">Title</div>
+              <TextInput value={title} setValue={setTitle}  placeholder={current_speaker?.title}/>
+
+              <div className="row_title">Company</div>
+              
+              <TextInput value={company} setValue={setCompany}  placeholder={current_speaker?.company}/>
+              <div className="row_title">Bio</div>
+
+              <div className="ta">
+              <div className="text_area">
+                <textarea
+                  name="description"
+                  value={bio}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setBio(e.target.value)
+                  }
+                    placeholder={current_speaker?.bio}
+                />
+              </div>
+              </div>
+
+              {/* <div className="row_title"></div>
+              <div className="select_speaker">
+
+                  {speakers.map((skr,index)=>{
+
+                    return(<div key={index} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
+                    onClick={()=> {set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
+                      {skr.name}
+                    </div>)
+                  })}
+                  
+              </div> */}
+
+              <div className="row_title">Speaker</div>
+                {imageurl === '' ? 
+                  <div className="select_image_con">
+                    {images.map((src, i) => (
+                      <img onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
+                    ))}
+                  </div> 
+                  : 
+                  <>
+                    <img className="selected_image_con" src={imageurl} alt="Selected Conference"/>
+                    <div className="change_image_con" onClick={() => setimageurl("")}> Change Speaker </div>
+                  </>
                 }
-                 placeholder={current_speaker?.bio}
-            />
-            </div>
 
-      Select Speaker
-      <div className="select_speaker">
-
-          {speakers.map((skr,index)=>{
-
-            return(<div key={index} className={skr.name === selected_speaker ? "speaker_row_selected" : "speaker_row"} 
-            onClick={()=> {set_selected_speaker(skr.name); setSpeakerID(skr.id)}}>
-              {skr.name}
-            </div>)
-          })}
+              <div className="submit_button" onClick={()=>{handleSubmit()}}>Submit</div>
+              
+            </div>    
+          </div>
         </div>
-
-      <div>Select Image</div>
-
-        {imageurl === '' ? 
-          <div className="select_image_con">
-            {images.map((src, i) => (
-              <img onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
-            ))}
-          </div> 
-          : 
-          <>
-            <img className="selected_image_con" src={imageurl} alt="Selected Conference"/>
-            <div className="change_image_con" onClick={() => setimageurl("")}> Change Image </div>
-          </>
-
-        }
-
-        <div className="submit_button" onClick={()=>{handleSubmit()}}>Submit</div>
-      
-    </div>
   );
 };
 
