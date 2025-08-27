@@ -1,12 +1,13 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useConferences } from "@/context/Conference";
 import { useState } from "react";
+import Image from "next/image";
 const NavBar: React.FC = () => {
   const pathname = usePathname();
 
-   const { conferences, selectedConference, setConferences, setFilteredConferences} = useConferences(); 
+   const { conferences, setFilteredConferences} = useConferences(); 
    const [selected_filter, set_selected_fitler] = useState('All')
 
   const getSelected = () => {
@@ -54,15 +55,15 @@ const NavBar: React.FC = () => {
     <nav className="navigation_bar">
 
         <Link className={selected === "Home" ? "filter_opt_active" : "filter_opt"} href="/">
-          <img className='icon_img' src="/images/icons/event_list.png" alt="Home Icon" />
+          <Image className='icon_img' src="/images/icons/event_list.png" alt="Home Icon" />
         </Link>
   
         <Link className={selected === "Admin" ? "filter_opt_active" : "filter_opt"} href="/02_admin">
-          <img className='icon_img' src="/images/icons/admin.png" alt="Admin Icon" />
+          <Image className='icon_img' src="/images/icons/admin.png" alt="Admin Icon" />
         </Link>
 
         <Link className={selected === "User" ? "filter_opt_active" : "filter_opt"} href="/03_user">
-          <img className='icon_img' src="/images/icons/user.png" alt="User Icon" />
+          <Image className='icon_img' src="/images/icons/user.png" alt="User Icon" />
         </Link>
 
 

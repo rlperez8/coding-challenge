@@ -2,9 +2,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useConferences } from "@/context/Conference";
-// import Conference_Speaker from '@/app/conference/components/Conference_Speaker';
+import Image from 'next/image';
 const Speakers_List = () => {
-    const {speakers, setConferences} = useConferences()
+    const {speakers} = useConferences()
 
 
     return (
@@ -20,15 +20,16 @@ const Speakers_List = () => {
             </Link>
             </div>
             {speakers.map((speaker, index) => (   
-              <div className='conference_speakers_con'> 
+              <div key={index} className='conference_speakers_con'> 
 
               <div className="conference_speakers_inner">
 
                   <div className="conference_speaker_image_con">
-                      <img
-                      src={`${speaker.avatar_url}`} 
-                      className="event_detail_img"
-                      />
+                    <Image src={speaker.avatar_url || "Speaker Avatar"} 
+                      alt={speaker.name || "Speaker Avatar"} 
+                      fill 
+                      className="object-cover rounded-full"
+                    />
                   </div>
                         
                   <div className="conference_speaker_bio_con">

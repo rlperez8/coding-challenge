@@ -3,7 +3,7 @@
 import { useConferences } from "@/context/Conference";
 import EventSummary from "../components/Conference_Details";
 import Conference_Speaker from "../components/Conference_Speaker";
-
+import Image from "next/image";
 import Conference_Description from "../components/Conference_Description";
 const Conference_Details: React.FC = () => {
   const { selectedConference, speakers } = useConferences();
@@ -16,9 +16,13 @@ const Conference_Details: React.FC = () => {
    <div className="conference_details">
     
       <div className="event_details_img_con">
-<img src={`/${selectedConference?.imageurl}`} alt={selectedConference?.name} className="event_detail_img" />
-
-      </div>
+        <Image 
+        src={`/${selectedConference?.imageurl}`} 
+        alt={selectedConference?.name || "Conference Image"} 
+        fill 
+        className="object-cover" 
+      />
+          </div>
 
         {selectedConference?.registerd ? <div className="conference_register">You are registered for this conference!</div>
         :

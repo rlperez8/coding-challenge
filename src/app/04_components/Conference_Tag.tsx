@@ -1,6 +1,5 @@
 "use client";
-// import "../../global.css";
-
+import Image from "next/image";
 interface ConferenceTagProps {
   conf: {
     imageurl: string;
@@ -23,7 +22,7 @@ const Conference_Tag = ({ conf, onClick }: ConferenceTagProps) => {
   return (
     <div className="conference_tag" onClick={onClick}>
       <div className="conference_tag_image">
-        <img src={conf.imageurl} alt={conf.name} />
+        <Image src={conf.imageurl} alt={conf.name} />
       </div>
       <div className={statusClass}>{status}</div>
       <div className="conference_tag_name">{conf.name}</div>

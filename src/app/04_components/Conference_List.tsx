@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+
 import { useConferences } from "@/context/Conference";
 import Link from "next/link";
 import Conference_Tag from "./Conference_Tag";

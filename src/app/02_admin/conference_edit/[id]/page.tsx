@@ -4,6 +4,7 @@ import TextInput from "../../components/textInput";
 import { useConferences } from "@/context/Conference";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const Edit_Form = () => {
 
   const router = useRouter();
@@ -11,7 +12,7 @@ const Edit_Form = () => {
   
   const conferenceId = params.id;
 
-  const {speakers, conferences, setConferences, setSpeakers, setSelectedConference} = useConferences()
+  const {conferences, setConferences, setSelectedConference} = useConferences()
   const conference = conferences.find(c => c.id === conferenceId);
   
 
@@ -26,14 +27,14 @@ const Edit_Form = () => {
   const [max_attendees, setMax_attendees] = useState<string>(conference?.max_attendees.toString() ?? "");
   const [current_attendees, setCurrent_attendees] = useState<string>(conference?.current_attendees.toString() ?? "");
   const [imageurl, setimageurl] = useState<string>(conference?.imageurl ?? "");
-  const [speakerID, setSpeakerID] = useState<string>("");
+  // const [speakerID, setSpeakerID] = useState<string>("");
   const [missingValue, setMissingValue] = useState('') 
-  const speaker = speakers.find(s => s.id === conference?.speaker);
-  const [selected_speaker, set_selected_speaker] = useState(speaker?.name)
+  // const speaker = speakers.find(s => s.id === conference?.speaker);
+  // const [selected_speaker, set_selected_speaker] = useState(speaker?.name)
 
   const handleUpdate = async () => {
 
-      if (!selected_speaker) return setMissingValue('Speaker');
+      // if (!selected_speaker) return setMissingValue('Speaker');
       if (!name) return setMissingValue("Name");
       if (!description) return setMissingValue("Description");
       if (!date) return setMissingValue("Date");
@@ -70,7 +71,7 @@ const Edit_Form = () => {
         current_attendees,
         category,
         imageurl,
-        speakerID,
+        // speakerID,
       }),
     });
 
@@ -88,16 +89,16 @@ const Edit_Form = () => {
   }
   };
 
-  const fetchConferencesAndSpeakers = async () => {
-    try {
-      const res = await fetch("/api");
-      const data = await res.json();
-      setConferences(data.conferences);
-      setSpeakers(data.speakers);
-    } catch (err) {
-      console.error("Failed to fetch data:", err);
-    }
-  };
+  // const fetchConferencesAndSpeakers = async () => {
+  //   try {
+  //     const res = await fetch("/api");
+  //     const data = await res.json();
+  //     setConferences(data.conferences);
+  //     setSpeakers(data.speakers);
+  //   } catch (err) {
+  //     console.error("Failed to fetch data:", err);
+  //   }
+  // };
 
 
 
@@ -154,12 +155,12 @@ const Edit_Form = () => {
         {imageurl === '' ? 
           <div className="select_image_con">
             {images.map((src, i) => (
-              <img onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
+              <Image onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
             ))}
           </div> 
           : 
           <>
-            <img className="selected_image_con" src={imageurl} alt="Selected Conference"/>
+            <Image className="selected_image_con" src={imageurl} alt="Selected Conference"/>
             <div className="change_image_con" onClick={() => setimageurl("")}> Change Image </div>
           </>
 

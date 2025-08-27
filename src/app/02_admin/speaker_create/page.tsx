@@ -1,29 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import TextInput from "../components/textInput";
-import { useConferences } from "@/context/Conference";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+
+import Image from "next/image";
 const Speaker_Create = () => {
 
-  const router = useRouter();
 
-  const params = useParams();
-  const conferenceId = params.id;
-  const {speakers, conferences, setConferences, setSpeakers, setSelectedConference} = useConferences()
-  const conference = conferences.find(c => c.id === conferenceId);
+
   
   const [speakerName, setSpeakerName] = useState('')
   const [title, setTitle] = useState('')
   const [company, setCompany] = useState('')
   const [bio, setBio] = useState('')
-  const [missingValue, setMissingValue] = useState('') 
 
-
-  const [selected_speaker, set_selected_speaker] = useState('')
-  const [speakerID, setSpeakerID] = useState<string>("");
   const [imageurl, setimageurl] = useState<string>("");
-
   const [images, setImages] = useState<string[]>([]);
   
   useEffect(() => {
@@ -37,13 +27,13 @@ const Speaker_Create = () => {
     const handleSubmit = async () => {
   
 
-      if (!speakerName) return setMissingValue("speakerName");
-      if (!title) return setMissingValue("title");
-      if (!company) return setMissingValue("company");
-      if (!bio) return setMissingValue("bio");
-      if (!imageurl) return setMissingValue("imageurl");
+      // if (!speakerName) return setMissingValue("speakerName");
+      // if (!title) return setMissingValue("title");
+      // if (!company) return setMissingValue("company");
+      // if (!bio) return setMissingValue("bio");
+      // if (!imageurl) return setMissingValue("imageurl");
         
-      setMissingValue(""); 
+      // setMissingValue(""); 
    
       const x = {
         speakerName,
@@ -112,12 +102,12 @@ const Speaker_Create = () => {
         {imageurl === '' ? 
           <div className="select_image_con">
             {images.map((src, i) => (
-              <img onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
+              <Image onClick={()=>{setimageurl(src)}} key={i} src={src} alt={`Conference ${i + 1}`} className="single_image"/>
             ))}
           </div> 
           : 
           <>
-            <img className="selected_image_con" src={imageurl} alt="Selected Conference"/>
+            <Image className="selected_image_con" src={imageurl} alt="Selected Conference"/>
             <div className="change_image_con" onClick={() => setimageurl("")}> Change Image </div>
           </>
 
