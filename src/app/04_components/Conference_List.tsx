@@ -6,50 +6,50 @@ import Conference_Tag from "./Conference_Tag";
 import { Conference } from "@/context/Conference";
 
 import { usePathname } from "next/navigation";
+
+
 export default function Conference_List() {
 
-    const {setConferences, setSelectedConference, filteredConferences} = useConferences();
+    const {conferences, setConferences, setSelectedConference, filteredConferences, setFilteredConferences} = useConferences();
     const pathname = usePathname();
 
+
     const handle_delete_event = async (conf_id: string) => {
-    try {
-      console.log('Deleting conference with ID:', conf_id);
+  try {
+    console.log("Deleting conference with ID:", conf_id);
 
-      const res = await fetch("/api", {  
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: conf_id }),
-      });
+    // Send DELETE request to API
+    const res = await fetch("/api", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: conf_id }),
+    });
 
-      const data = await res.json();
-      console.log('Response data:', data);
+    const response = await res.json();
+    console.log("Response data:", response.data);
 
-      if (res.ok) {
- 
-        setConferences(prev => prev.filter(c => c.id !== conf_id));
-      } else {
-        alert(`Error: ${data.error}`);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Failed to delete conference");
+    if (res.ok && Array.isArray(response.data)) {
+      // Sort the updated conferences by name (alphabetically)
+      const sortedConferences = [...response.data].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
+      // Update state with sorted data
+      setFilteredConferences(sortedConferences);
+      console.log("Conferences updated and sorted successfully!");
+    } else {
+      alert(`Error deleting conference: ${response.error || "Unknown error"}`);
     }
+  } catch (err) {
+    console.error("Delete failed:", err);
+    alert("Failed to delete conference");
+  }
     };
 
 
-    // useEffect(() => {
-    //   if (pathname === "/03_user") {
-    //     const filtered = conferences
-    //     .filter(c => c.registerd === Boolean(c.registerd))
-    //     .slice(0, 500); 
-    //     setFilteredConferences(filtered);
-    //     console.log(filtered);
-    //   } else {
-    //     setFilteredConferences(conferences.slice(0, 500)); // limit if needed
-    //   }
-    // }, [pathname, conferences]);
 
-    // console.log(pathname);
+
+
 
      
     return (

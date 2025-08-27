@@ -37,13 +37,20 @@ export async function DELETE(req: Request) {
     const { id } = body; 
     console.log('Incoming ID:', id);
 
-    const result = await sql`
+    // Delete the conference
+    await sql`
       DELETE FROM coding_challenge.conferences
-      WHERE id = ${id}
-      RETURNING *;
+      WHERE id = ${id};
     `;
+
+    // Fetch the updated table
+    const updatedConferences = await sql`
+      SELECT * FROM coding_challenge.conferences
+      ORDER BY id;
+    `;
+
     return new Response(
-      JSON.stringify({ message: "Deleted successfully", data: result.rows[0] }),
+      JSON.stringify({ message: "Deleted successfully", data: updatedConferences.rows }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
@@ -55,10 +62,6 @@ export async function DELETE(req: Request) {
   }
 }
 export async function GET() {
-  console.log('hello')
-  console.log (process.env.DATABASE_URL || "undefined")
-  console.log (process.env.POSTGRES_URL || "undefined")
-  console.log (process.env.NODE_ENV || "undefined")
 
   try {
     // Fetch conferences

@@ -17,31 +17,34 @@ const NavBar: React.FC = () => {
     return "";
   };
     const handle_sold = () => {
-      const filtered = conferences.filter(
-                  (c) => c.current_attendees === c.max_attendees
-                );
+      const filtered = conferences
+      .filter((c) => c.current_attendees === c.max_attendees)
+      .sort((a,b) => a.name.localeCompare(b.name))
       setFilteredConferences(filtered)
       console.log(filtered)
     }
 
     const handle_closed = () => {
-      const filtered = conferences.filter(
-        (c) => new Date(c.date) < new Date()
-      );
+      const filtered = conferences
+        .filter(c => new Date(c.date) < new Date())
+        .sort((a, b) => a.name.localeCompare(b.name));
+
       setFilteredConferences(filtered);
       console.log(filtered);
     };
 
     const handle_open = () => {
-      const filtered = conferences.filter(
-        (c) => new Date(c.date) >= new Date() && c.current_attendees < c.max_attendees
-      );
+      const filtered = conferences
+      .filter((c) => new Date(c.date) >= new Date() && c.current_attendees < c.max_attendees)
+      .sort((a, b) => a.name.localeCompare(b.name));
       setFilteredConferences(filtered);
       console.log(filtered);
     };
     const handle_all = () => {
-    
-      setFilteredConferences(conferences);
+      
+      const filtered = conferences
+      .sort((a, b) => a.name.localeCompare(b.name));
+      setFilteredConferences(filtered);
       console.log(conferences);
     };
     
