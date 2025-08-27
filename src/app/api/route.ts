@@ -1,7 +1,5 @@
 import { sql } from "@vercel/postgres";
-
 import { v4 as uuidv4 } from "uuid";
-
 
 export async function POST(req: Request) {
   
@@ -57,6 +55,11 @@ export async function DELETE(req: Request) {
   }
 }
 export async function GET() {
+  console.log('hello')
+  console.log (process.env.DATABASE_URL || "undefined")
+  console.log (process.env.POSTGRES_URL || "undefined")
+  console.log (process.env.NODE_ENV || "undefined")
+
   try {
     // Fetch conferences
     const conferencesResult = await sql`SELECT * FROM coding_challenge.conferences`;
