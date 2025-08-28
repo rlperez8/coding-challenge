@@ -80,6 +80,17 @@ html, body {
 
   
 }
+.no_conference_found{
+  width: 100%;
+  /* border: 5px solid green; */
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  font-size: 150%;
+  color: #4e4e4e;
+}
 .filter_opt_open{
  
   width: 100%;
@@ -355,7 +366,7 @@ overflow: hidden;
     overflow-y: scroll;
 
 }
-.conference_register{
+.conference_registered{
   width: 100%;
   height: 150px;
   border: 2px solid black;
@@ -367,6 +378,19 @@ overflow: hidden;
   color: white;
   font-weight: 600;
 }
+.conference_unregistered{
+  width: 100%;
+  height: 150px;
+  border: 2px solid black;
+  background-color: rgb(216, 214, 214);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(220, 39, 19);
+  color: white;
+  font-weight: 600;
+}
+
 
 .conf_page_con{
   width: 100%;

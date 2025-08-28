@@ -3,27 +3,55 @@
 import { useConferences } from "@/context/Conference";
 import EventSummary from "../components/Conference_Details";
 import Conference_Speaker from "../components/Conference_Speaker";
-
 import Conference_Description from "../components/Conference_Description";
+
 const Conference_Details: React.FC = () => {
-  const { selectedConference, speakers } = useConferences();
+
+  const { selectedConference, speakers, setSelectedConference } = useConferences();
   const speaker_id = selectedConference?.speaker; 
   const speaker = speakers.find(s => s.id === speaker_id);
 
-  console.log(selectedConference)
+  const handle_registation = async () => {
+
+    console.log(selectedConference)
+
+    try{
+      const res = await fetch('/api/register', {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          id: selectedConference?.id,
+          current_attendees: selectedConference?.current_attendees,
+          isRegisterd: !selectedConference?.registerd
+
+        }),
+      })
+      
+      const response = await res.json();
+      console.log(response)
+      setSelectedConference(response)
+
+    }catch (err){
+      console.log(err)
+    }
+
+  }
+
+  
 
   return (
    <div className="conference_details">
-    
-      <div className="event_details_img_con">
-<img src={`/${selectedConference?.imageurl}`} alt={selectedConference?.name} className="event_detail_img" />
 
+      {/* Conference Photo */}
+      <div className="event_details_img_con">
+        <img src={`/${selectedConference?.imageurl}`} alt={selectedConference?.name} className="event_detail_img" />
       </div>
 
-        {selectedConference?.registerd ? <div className="conference_register">You are registered for this conference!</div>
-        :
-         <div className="conference_register">Register</div>
-      }
+      {/* Register Button */}
+      {selectedConference?.registerd === true && <div className="conference_unregistered" onClick={()=>{handle_registation()}}>Un-Register</div>}
+      {selectedConference?.registerd === false && <div className="conference_registered" onClick={()=>{handle_registation()}}>Register</div>}
+      
+   
       
       <EventSummary/>
 
